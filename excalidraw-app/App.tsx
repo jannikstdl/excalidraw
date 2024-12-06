@@ -6,6 +6,7 @@ import { ErrorDialog } from "../packages/excalidraw/components/ErrorDialog";
 import { TopErrorBoundary } from "./components/TopErrorBoundary";
 import {
   APP_NAME,
+  EDITOR_LS_KEYS,
   EVENT,
   THEME,
   TITLE_TIMEOUT,
@@ -121,6 +122,20 @@ import {
 import { appThemeAtom, useHandleAppTheme } from "./useHandleAppTheme";
 import { getPreferredLanguage } from "./app-language/language-detector";
 import { useAppLangCode } from "./app-language/language-state";
+import { EditorLocalStorage } from "../packages/excalidraw/data/EditorLocalStorage";
+import { getBaseUrl, getLLMModel } from "../packages/excalidraw/data/magic";
+
+const SYSTEM_PROMPT = `Create a Mermaid diagram using the provided text description of a scenario. Your task is to translate the text into a Mermaid Live Editor format, focusing solely on the conversion without including any extraneous content. The output should be a clear and organized visual representation of the relationships or processes described in the text.
+
+Here is an example of the expected output:
+
+graph TB
+    PersonA[Person A] -- Relationship1 --> PersonB[Person B]
+    PersonC[Person C] -- Relationship2 --> PersonB
+    PersonD[Person D] -- Relationship3 --> PersonB
+    PersonE[Person E] -- Relationship4 --> PersonC
+    PersonF[Person F] -- Relationship5 --> PersonA
+    PersonG[Person G] -- Relationship6 --> PersonF`;
 
 polyfill();
 
@@ -849,40 +864,29 @@ const ExcalidrawWrapper = () => {
         <TTDDialog
           onTextSubmit={async (input) => {
             try {
-              const response = await fetch(
-                `${
-                  import.meta.env.VITE_APP_AI_BACKEND
-                }/v1/ai/text-to-diagram/generate`,
-                {
-                  method: "POST",
+              const apiKey = EditorLocalStorage.get(EDITOR_LS_KEYS.OAI_API_KEY);
+              const apiBaseUrl = getBaseUrl();
+              const response = await fetch(`${apiBaseUrl}/chat/completions`, {
+                method: "POST",
                   headers: {
-                    Accept: "application/json",
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${apiKey}`,
                   },
-                  body: JSON.stringify({ prompt: input }),
-                },
+                  body: JSON.stringify({
+                    messages: [
+                      { role: "system", content: SYSTEM_PROMPT },
+                      { role: "user", content: input },
+                    ],
+                    model: getLLMModel(),
+                    max_tokens: 4096,
+                    temperature: 0.1,
+                  }),
+                }
               );
-
-              const rateLimit = response.headers.has("X-Ratelimit-Limit")
-                ? parseInt(response.headers.get("X-Ratelimit-Limit") || "0", 10)
-                : undefined;
-
-              const rateLimitRemaining = response.headers.has(
-                "X-Ratelimit-Remaining",
-              )
-                ? parseInt(
-                    response.headers.get("X-Ratelimit-Remaining") || "0",
-                    10,
-                  )
-                : undefined;
-
               const json = await response.json();
-
               if (!response.ok) {
                 if (response.status === 429) {
                   return {
-                    rateLimit,
-                    rateLimitRemaining,
                     error: new Error(
                       "Too many requests today, please try again tomorrow!",
                     ),
@@ -892,12 +896,12 @@ const ExcalidrawWrapper = () => {
                 throw new Error(json.message || "Generation failed...");
               }
 
-              const generatedResponse = json.generatedResponse;
+              const generatedResponse = json.choices[0].message.content;
               if (!generatedResponse) {
                 throw new Error("Generation failed...");
               }
 
-              return { generatedResponse, rateLimit, rateLimitRemaining };
+              return { generatedResponse };
             } catch (err: any) {
               throw new Error("Request failed");
             }

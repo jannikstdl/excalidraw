@@ -1,4 +1,5 @@
-import { THEME } from "../constants";
+import { EDITOR_LS_KEYS, THEME } from "../constants";
+import { EditorLocalStorage } from "./EditorLocalStorage";
 import type { Theme } from "../element/types";
 import type { DataURL } from "../types";
 import type { OpenAIInput, OpenAIOutput } from "./ai/types";
@@ -36,19 +37,36 @@ Your goal is a production-ready prototype that brings the wireframes to life.
 
 Please output JUST THE HTML file containing your best attempt at implementing the provided wireframes.`;
 
+// 获取默认值
+export const getBaseUrl = (): string => {
+  return EditorLocalStorage.get(EDITOR_LS_KEYS.MAGIC_BASE_URL) || "https://api.siliconflow.cn/v1";
+};
+
+export const getVLMModel = (): string => {
+  return EditorLocalStorage.get(EDITOR_LS_KEYS.MAGIC_VLM_MODEL) || "Qwen/Qwen2-VL-72B-Instruct";
+};
+
+export const getLLMModel = (): string => {
+  return EditorLocalStorage.get(EDITOR_LS_KEYS.MAGIC_LLM_MODEL) || "Qwen/Qwen2.5-Coder-32B-Instruct";
+};
+
 export async function diagramToHTML({
   image,
   apiKey,
   text,
   theme = THEME.LIGHT,
+  baseUrl = getBaseUrl(),
+  vlmModel = getVLMModel(),
 }: {
   image: DataURL;
   apiKey: string;
   text: string;
   theme?: Theme;
+  baseUrl?: string;
+  vlmModel?: string;
 }) {
   const body: OpenAIInput.ChatCompletionCreateParamsBase = {
-    model: "gpt-4-vision-preview",
+    model: vlmModel,
     // 4096 are max output tokens allowed for `gpt-4-vision-preview` currently
     max_tokens: 4096,
     temperature: 0.1,
@@ -84,7 +102,7 @@ export async function diagramToHTML({
     | ({ ok: true } & OpenAIOutput.ChatCompletion)
     | ({ ok: false } & OpenAIOutput.APIError);
 
-  const resp = await fetch("https://api.openai.com/v1/chat/completions", {
+  const resp = await fetch(`${baseUrl}/chat/completions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

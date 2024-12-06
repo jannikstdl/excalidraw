@@ -12,6 +12,10 @@ import { Paragraph } from "./Paragraph";
 import "./MagicSettings.scss";
 import TTDDialogTabs from "./TTDDialog/TTDDialogTabs";
 import { TTDDialogTab } from "./TTDDialog/TTDDialogTab";
+import { useI18n } from "../i18n";
+import { getBaseUrl, getLLMModel, getVLMModel } from "../data/magic";
+import { EditorLocalStorage } from "../data/EditorLocalStorage";
+import { EDITOR_LS_KEYS } from "../constants";
 
 export const MagicSettings = (props: {
   openAIKey: string | null;
@@ -26,8 +30,18 @@ export const MagicSettings = (props: {
   );
 
   const appState = useUIAppState();
+  const { t } = useI18n();
+
+  const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
+  
+  const [baseUrl, setBaseUrl] = useState(getBaseUrl());
+  const [vlmModel, setVlmModel] = useState(getVLMModel());
+  const [llmModel, setLlmModel] = useState(getLLMModel());
 
   const onConfirm = () => {
+    EditorLocalStorage.set(EDITOR_LS_KEYS.MAGIC_BASE_URL, baseUrl);
+    EditorLocalStorage.set(EDITOR_LS_KEYS.MAGIC_VLM_MODEL, vlmModel);
+    EditorLocalStorage.set(EDITOR_LS_KEYS.MAGIC_LLM_MODEL, llmModel);
     props.onConfirm(keyInputValue.trim(), shouldPersist);
   };
 
@@ -43,7 +57,7 @@ export const MagicSettings = (props: {
       }}
       title={
         <div style={{ display: "flex" }}>
-          Wireframe to Code (AI){" "}
+          {t("magicSettings.title")}
           <div
             style={{
               display: "flex",
@@ -57,72 +71,47 @@ export const MagicSettings = (props: {
               color: "var(--color-surface-lowest)",
             }}
           >
-            Experimental
+            {t("magicSettings.experimentalFeature")}
           </div>
         </div>
       }
       className="MagicSettings"
       autofocus={false}
     >
-      {/*  <h2
-        style={{
-          margin: 0,
-          fontSize: "1.25rem",
-          paddingLeft: "2.5rem",
-        }}
-      >
-        AI Settings
-      </h2> */}
       <TTDDialogTabs dialog="settings" tab={appState.openDialog.tab}>
-        {/* <TTDDialogTabTriggers>
-          <TTDDialogTabTrigger tab="text-to-diagram">
-            <InlineIcon icon={brainIcon} /> Text to diagram
-          </TTDDialogTabTrigger>
-          <TTDDialogTabTrigger tab="diagram-to-code">
-            <InlineIcon icon={MagicIcon} /> Wireframe to code
-          </TTDDialogTabTrigger>
-        </TTDDialogTabTriggers> */}
-        {/* <TTDDialogTab className="ttd-dialog-content" tab="text-to-diagram">
-          TODO
-        </TTDDialogTab> */}
         <TTDDialogTab
-          //  className="ttd-dialog-content"
           tab="diagram-to-code"
         >
           <Paragraph>
-            For the diagram-to-code feature we use{" "}
-            <InlineIcon icon={OpenAIIcon} />
-            OpenAI.
+            <a href="https://github.com/excalidraw/excalidraw" target="_blank" rel="noopener noreferrer">
+              {t("magicSettings.originalProject")}
+            </a>{" "}
+            {t("magicSettings.useOpenAI")}
           </Paragraph>
           <Paragraph>
-            While the OpenAI API is in beta, its use is strictly limited — as
-            such we require you use your own API key. You can create an{" "}
+            {t("magicSettings.createAccount")}{" "}
             <a
-              href="https://platform.openai.com/login?launch"
+              href="https://cloud.siliconflow.cn/i/Vry8ZUHq"
               rel="noopener noreferrer"
               target="_blank"
             >
-              OpenAI account
+              {t("magicSettings.siliconCloudAccount")}
             </a>
-            , add a small credit (5 USD minimum), and{" "}
+            {t("magicSettings.freeCredit")}{" "}
             <a
-              href="https://platform.openai.com/api-keys"
+              href="https://cloud.siliconflow.cn/account/ak"
               rel="noopener noreferrer"
               target="_blank"
             >
-              generate your own API key
+              {t("magicSettings.generateKey")}
             </a>
-            .
-          </Paragraph>
-          <Paragraph>
-            Your OpenAI key does not leave the browser, and you can also set
-            your own limit in your OpenAI account dashboard if needed.
+            。
           </Paragraph>
           <TextField
             isRedacted
             value={keyInputValue}
-            placeholder="Paste your API key here"
-            label="OpenAI API key"
+            placeholder={t("magicSettings.apiKeyPlaceholder")}
+            label={t("magicSettings.apiKeyLabel")}
             onChange={(value) => {
               setKeyInputValue(value);
               props.onChange(value.trim(), shouldPersist);
@@ -130,27 +119,53 @@ export const MagicSettings = (props: {
             selectOnRender
             onKeyDown={(event) => event.key === KEYS.ENTER && onConfirm()}
           />
+          
           <Paragraph>
-            By default, your API token is not persisted anywhere so you'll need
-            to insert it again after reload. But, you can persist locally in
-            your browser below.
+            {t("magicSettings.tokenNotSaved")}
+            {" "}
+            {t("magicSettings.saveInBrowser")}
           </Paragraph>
 
           <CheckboxItem checked={shouldPersist} onChange={setShouldPersist}>
-            Persist API key in browser storage
+            {t("magicSettings.persistKey")}
           </CheckboxItem>
 
           <Paragraph>
-            Once API key is set, you can use the <InlineIcon icon={MagicIcon} />{" "}
-            tool to wrap your elements in a frame that will then allow you to
-            turn it into code. This dialog can be accessed using the{" "}
-            <b>AI Settings</b> <InlineIcon icon={OpenAIIcon} />.
+            {t("magicSettings.dialogAccess")} <b>{t("magicSettings.aiSettings")}</b>{" "}
+            <InlineIcon icon={OpenAIIcon} /> {t("magicSettings.dialogAccessSuffix")}
           </Paragraph>
+
+          <details 
+            open={isAdvancedOpen}
+            onToggle={(e) => setIsAdvancedOpen(e.currentTarget.open)}
+          >
+            <summary>{t("magicSettings.advancedOptions")}</summary>
+            <div className="magic-settings-advanced">
+              <TextField
+                label={t("magicSettings.baseUrl")}
+                value={baseUrl}
+                onChange={(value) => setBaseUrl(value)}
+                placeholder="https://api.siliconflow.cn/v1"
+              />
+              <TextField
+                label={t("magicSettings.vlmModel")}
+                value={vlmModel}
+                onChange={(value) => setVlmModel(value)}
+                placeholder="Qwen/Qwen2-VL-72B-Instruct"
+              />
+              <TextField
+                label={t("magicSettings.llmModel")} 
+                value={llmModel}
+                onChange={(value) => setLlmModel(value)}
+                placeholder="Qwen/Qwen2-72B-Instruct"
+              />
+            </div>
+          </details>
 
           <FilledButton
             className="MagicSettings__confirm"
             size="large"
-            label="Confirm"
+            label={t("magicSettings.confirm")}
             onClick={onConfirm}
           />
         </TTDDialogTab>

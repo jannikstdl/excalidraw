@@ -584,5 +584,32 @@
     },
     "itemNotAvailable": "Command is not available...",
     "shortcutHint": "For Command palette, use {{shortcut}}"
+  },
+  "magicSettings": {
+    "title": "AI Settings",
+    "experimentalFeature": "Experimental Feature",
+    "originalProject": "The original project",
+    "useOpenAI": "uses OpenAI's AI service, this project replaces it with SiliconCloud.",
+    "createAccount": "You can create a",
+    "siliconCloudAccount": "SiliconCloud account",
+    "freeCredit": "(get ¥14 free credit for first registration), and",
+    "generateKey": "generate your own API key",
+    "apiKeyPlaceholder": "Paste your API key here",
+    "apiKeyLabel": "SiliconCloud API Key",
+    "apiBaseUrlLabel": "API Base URL",
+    "apiBaseUrlPlaceholder": "Enter API base URL (optional)",
+    "tokenNotSaved": "By default, your API token is not saved, so you'll need to re-enter it after reloading.",
+    "saveInBrowser": "However, you can choose to save it in your browser.",
+    "persistKey": "Save API key in browser storage",
+    "usageInstruction": "After setting up the API key, you can use the",
+    "toolInstruction": "tool to wrap your elements in a frame and then convert them to code.",
+    "dialogAccess": "You can access this dialog by clicking",
+    "aiSettings": "AI Settings",
+    "dialogAccessSuffix": "to access this dialog.",
+    "confirm": "Confirm",
+    "advancedOptions": "Advanced Options",
+    "baseUrl": "API Base URL",
+    "vlmModel": "Vision Language Model",
+    "llmModel": "Language Model"
   }
 }

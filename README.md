@@ -1,3 +1,14 @@
+> [!IMPORTANT]
+> 本项目是基于 [Excalidraw](https://github.com/excalidraw/excalidraw) 的二次开发，主要改动为在 Excalidraw 中使用可配置的 AI 功能以及增加中文手写字体支持。
+
+> [!IMPORTANT]
+> This project is a secondary development based on [Excalidraw](https://github.com/excalidraw/excalidraw), with the main changes being the addition of configurable AI functionality and Chinese handwriting font support in Excalidraw.
+
+---
+
+> [!IMPORTANT]
+> The original Excalidraw Project README is as follows:
+
 <a href="https://excalidraw.com/" target="_blank" rel="noopener">
   <picture>
     <source media="(prefers-color-scheme: dark)" alt="Excalidraw" srcset="https://excalidraw.nyc3.cdn.digitaloceanspaces.com/github/excalidraw_github_cover_2_dark.png" />
