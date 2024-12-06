@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import ExcalidrawApp from "./App";
 import { registerSW } from "virtual:pwa-register";
+import { Analytics } from '@vercel/analytics/react';
 
 import "../excalidraw-app/sentry";
 window.__EXCALIDRAW_SHA__ = import.meta.env.VITE_APP_GIT_SHA;
@@ -11,5 +12,6 @@ registerSW();
 root.render(
   <StrictMode>
     <ExcalidrawApp />
+    <Analytics />
   </StrictMode>,
 );
