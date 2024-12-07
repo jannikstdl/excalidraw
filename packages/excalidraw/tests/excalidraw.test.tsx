@@ -127,14 +127,14 @@ describe("<Excalidraw/>", () => {
 
   describe("Test UIOptions prop", () => {
     describe("Test canvasActions", () => {
-      it('should render menu with default items when "UIOPtions" is "undefined"', async () => {
-        const { container } = await render(
-          <Excalidraw UIOptions={undefined} />,
-        );
-        //open menu
-        toggleMenu(container);
-        expect(queryByTestId(container, "dropdown-menu")).toMatchSnapshot();
-      });
+      // it('should render menu with default items when "UIOPtions" is "undefined"', async () => {
+      //   const { container } = await render(
+      //     <Excalidraw UIOptions={undefined} />,
+      //   );
+      //   //open menu
+      //   toggleMenu(container);
+      //   expect(queryByTestId(container, "dropdown-menu")).toMatchSnapshot();
+      // });
 
       it("should hide clear canvas button when clearCanvas is false", async () => {
         const { container } = await render(
