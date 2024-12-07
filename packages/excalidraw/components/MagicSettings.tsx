@@ -13,7 +13,7 @@ import "./MagicSettings.scss";
 import TTDDialogTabs from "./TTDDialog/TTDDialogTabs";
 import { TTDDialogTab } from "./TTDDialog/TTDDialogTab";
 import { useI18n } from "../i18n";
-import { getBaseUrl, getLLMModel, getVLMModel } from "../data/magic";
+import { getBaseUrl, getLLMModel, getVLMModel, getTextToDiagramPrompt, getDiagramToCodePrompt } from "../data/magic";
 import { EditorLocalStorage } from "../data/EditorLocalStorage";
 import { EDITOR_LS_KEYS } from "../constants";
 
@@ -38,10 +38,15 @@ export const MagicSettings = (props: {
   const [vlmModel, setVlmModel] = useState(getVLMModel());
   const [llmModel, setLlmModel] = useState(getLLMModel());
 
+  const [textToDiagramPrompt, setTextToDiagramPrompt] = useState(getTextToDiagramPrompt());
+  const [diagramToCodePrompt, setDiagramToCodePrompt] = useState(getDiagramToCodePrompt());
+
   const onConfirm = () => {
     EditorLocalStorage.set(EDITOR_LS_KEYS.MAGIC_BASE_URL, baseUrl);
     EditorLocalStorage.set(EDITOR_LS_KEYS.MAGIC_VLM_MODEL, vlmModel);
     EditorLocalStorage.set(EDITOR_LS_KEYS.MAGIC_LLM_MODEL, llmModel);
+    EditorLocalStorage.set(EDITOR_LS_KEYS.MAGIC_TEXT_TO_DIAGRAM_PROMPT, textToDiagramPrompt);
+    EditorLocalStorage.set(EDITOR_LS_KEYS.MAGIC_DIAGRAM_TO_CODE_PROMPT, diagramToCodePrompt);
     props.onConfirm(keyInputValue.trim(), shouldPersist);
   };
 
@@ -158,6 +163,22 @@ export const MagicSettings = (props: {
                 value={llmModel}
                 onChange={(value) => setLlmModel(value)}
                 placeholder="Qwen/Qwen2-72B-Instruct"
+              />
+              
+              <TextField
+                label={t("magicSettings.textToDiagramPrompt")}
+                value={textToDiagramPrompt}
+                onChange={(value) => setTextToDiagramPrompt(value)}
+                placeholder={t("magicSettings.textToDiagramPromptPlaceholder")}
+                type="textarea"
+              />
+              
+              <TextField
+                label={t("magicSettings.diagramToCodePrompt")}
+                value={diagramToCodePrompt}
+                onChange={(value) => setDiagramToCodePrompt(value)}
+                placeholder={t("magicSettings.diagramToCodePromptPlaceholder")}
+                type="textarea"
               />
             </div>
           </details>

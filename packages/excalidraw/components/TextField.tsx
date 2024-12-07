@@ -15,18 +15,19 @@ import { eyeIcon, eyeClosedIcon } from "./icons";
 type TextFieldProps = {
   onChange?: (value: string) => void;
   onClick?: () => void;
-  onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  onKeyDown?: (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 
   readonly?: boolean;
   fullWidth?: boolean;
   selectOnRender?: boolean;
+  type?: "text" | "password" | "textarea";
 
   label?: string;
   placeholder?: string;
   isRedacted?: boolean;
 } & ({ value: string } | { defaultValue: string });
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+export const TextField = forwardRef<HTMLInputElement | HTMLTextAreaElement, TextFieldProps>(
   (
     {
       onChange,
@@ -37,11 +38,12 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       selectOnRender,
       onKeyDown,
       isRedacted = false,
+      type = "text",
       ...rest
     },
     ref,
   ) => {
-    const innerRef = useRef<HTMLInputElement | null>(null);
+    const innerRef = useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
 
     useImperativeHandle(ref, () => innerRef.current!);
 
@@ -53,6 +55,44 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
     const [isTemporarilyUnredacted, setIsTemporarilyUnredacted] =
       useState<boolean>(false);
+
+    const commonProps = {
+      className: clsx({
+        "is-redacted":
+          "value" in rest &&
+          rest.value &&
+          isRedacted &&
+          !isTemporarilyUnredacted,
+      }),
+      readOnly: readonly,
+      value: "value" in rest ? rest.value : undefined,
+      defaultValue: "defaultValue" in rest ? rest.defaultValue : undefined,
+      placeholder: placeholder,
+      ref: innerRef as any,
+      onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => 
+        onChange?.(event.target.value),
+      onKeyDown,
+      spellCheck: false,
+    };
+
+    if (type === "textarea") {
+      return (
+        <div
+          className={clsx("ExcTextField", {
+            "ExcTextField--fullWidth": fullWidth,
+          })}
+        >
+          <div className="ExcTextField__label">{label}</div>
+          <div
+            className={clsx("ExcTextField__input", "ExcTextField__input--textarea", {
+              "ExcTextField__input--readonly": readonly,
+            })}
+          >
+            <textarea {...commonProps} />
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div
@@ -69,24 +109,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             "ExcTextField__input--readonly": readonly,
           })}
         >
-          <input
-            className={clsx({
-              "is-redacted":
-                "value" in rest &&
-                rest.value &&
-                isRedacted &&
-                !isTemporarilyUnredacted,
-            })}
-            readOnly={readonly}
-            value={"value" in rest ? rest.value : undefined}
-            defaultValue={
-              "defaultValue" in rest ? rest.defaultValue : undefined
-            }
-            placeholder={placeholder}
-            ref={innerRef}
-            onChange={(event) => onChange?.(event.target.value)}
-            onKeyDown={onKeyDown}
-          />
+          <input {...commonProps} />
           {isRedacted && (
             <Button
               onSelect={() =>

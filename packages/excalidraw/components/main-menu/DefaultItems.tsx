@@ -325,9 +325,16 @@ export const Socials = () => {
       <DropdownMenuItemLink
         icon={GithubIcon}
         href="https://github.com/excalidraw/excalidraw"
-        aria-label="GitHub"
+        aria-label="GitHub(Original)"
       >
-        GitHub
+        GitHub(Original)
+      </DropdownMenuItemLink>
+      <DropdownMenuItemLink
+        icon={GithubIcon}
+        href="https://github.com/KwokKwok/excalidraw"
+        aria-label="GitHub(Current fork)"
+      >
+        GitHub(Current fork)
       </DropdownMenuItemLink>
       <DropdownMenuItemLink
         icon={XBrandIcon}

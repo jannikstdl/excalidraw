@@ -4,4 +4,24 @@
   .TextInput {
     display: inline-block;
   }
+
+  .ExcTextField {
+    margin-top: 0.5rem;
+  }
+
+  .ExcTextField__input--textarea {
+    display: block;
+    height: auto !important;
+    overflow-y: auto;
+    padding: 0.4em !important;
+    textarea {
+      height: auto;
+      border: none !important;
+      outline: none !important;
+      text-wrap: auto !important;
+      resize: vertical !important;
+      width: 100% !important;
+      padding: 0.6em !important;
+    }
+  }
 }

@@ -15,4 +15,14 @@
     margin-top: 2rem;
     margin-right: auto;
   }
+
+  .magic-settings-advanced {
+    textarea.TextField__input {
+      min-height: 100px;
+      resize: vertical;
+      font-family: var(--ui-font-family);
+      padding: 0.6em;
+      line-height: 1.4;
+    }
+  }
 }

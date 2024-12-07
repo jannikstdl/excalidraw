@@ -401,7 +401,9 @@ export const EDITOR_LS_KEYS = {
   PUBLISH_LIBRARY: "publish-library-data",
   MAGIC_BASE_URL: "excalidraw-magic-base-url",
   MAGIC_VLM_MODEL: "excalidraw-magic-vlm-model",
-  MAGIC_LLM_MODEL: "excalidraw-magic-llm-model"
+  MAGIC_LLM_MODEL: "excalidraw-magic-llm-model",
+  MAGIC_TEXT_TO_DIAGRAM_PROMPT: "excalidraw-magic-text-to-diagram-prompt",
+  MAGIC_DIAGRAM_TO_CODE_PROMPT: "excalidraw-magic-diagram-to-code-prompt"
 } as const;
 
 /**

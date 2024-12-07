@@ -123,7 +123,7 @@ import { appThemeAtom, useHandleAppTheme } from "./useHandleAppTheme";
 import { getPreferredLanguage } from "./app-language/language-detector";
 import { useAppLangCode } from "./app-language/language-state";
 import { EditorLocalStorage } from "../packages/excalidraw/data/EditorLocalStorage";
-import { getBaseUrl, getLLMModel } from "../packages/excalidraw/data/magic";
+import { getBaseUrl, getLLMModel, getTextToDiagramPrompt } from "../packages/excalidraw/data/magic";
 
 const SYSTEM_PROMPT = `Create a Mermaid diagram using the provided text description of a scenario. Your task is to translate the text into a Mermaid Live Editor format, focusing solely on the conversion without including any extraneous content. The output should be a clear and organized visual representation of the relationships or processes described in the text.
 
@@ -866,6 +866,7 @@ const ExcalidrawWrapper = () => {
             try {
               const apiKey = EditorLocalStorage.get(EDITOR_LS_KEYS.OAI_API_KEY);
               const apiBaseUrl = getBaseUrl();
+              const textToDiagramPrompt = getTextToDiagramPrompt();
               const response = await fetch(`${apiBaseUrl}/chat/completions`, {
                 method: "POST",
                   headers: {
@@ -874,7 +875,7 @@ const ExcalidrawWrapper = () => {
                   },
                   body: JSON.stringify({
                     messages: [
-                      { role: "system", content: SYSTEM_PROMPT },
+                      { role: "system", content: textToDiagramPrompt },
                       { role: "user", content: input },
                     ],
                     model: getLLMModel(),
@@ -1011,7 +1012,7 @@ const ExcalidrawWrapper = () => {
               },
             },
             {
-              label: "GitHub",
+              label: "GitHub(Original)",
               icon: GithubIcon,
               category: DEFAULT_CATEGORIES.links,
               predicate: true,
@@ -1027,6 +1028,28 @@ const ExcalidrawWrapper = () => {
               perform: () => {
                 window.open(
                   "https://github.com/excalidraw/excalidraw",
+                  "_blank",
+                  "noopener noreferrer",
+                );
+              },
+            },
+            {
+              label: "GitHub(Current fork)",
+              icon: GithubIcon,
+              category: DEFAULT_CATEGORIES.links,
+              predicate: true,
+              keywords: [
+                "issues",
+                "bugs",
+                "requests",
+                "report",
+                "features",
+                "social",
+                "community",
+              ],
+              perform: () => {
+                window.open(
+                  "https://github.com/KwokKwok/excalidraw",
                   "_blank",
                   "noopener noreferrer",
                 );

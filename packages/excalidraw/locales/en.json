@@ -592,7 +592,7 @@
     "useOpenAI": "uses OpenAI's AI service, this project replaces it with SiliconCloud.",
     "createAccount": "You can create a",
     "siliconCloudAccount": "SiliconCloud account",
-    "freeCredit": "(get ¥14 free credit for first registration), and",
+    "freeCredit": "(get ¥14 free long-term credit for first registration), and",
     "generateKey": "generate your own API key",
     "apiKeyPlaceholder": "Paste your API key here",
     "apiKeyLabel": "SiliconCloud API Key",
@@ -610,6 +610,10 @@
     "advancedOptions": "Advanced Options",
     "baseUrl": "API Base URL",
     "vlmModel": "Vision Language Model",
-    "llmModel": "Language Model"
+    "llmModel": "Language Model",
+    "textToDiagramPrompt": "Text to Diagram Prompt",
+    "diagramToCodePrompt": "Diagram to Code Prompt",
+    "textToDiagramPromptPlaceholder": "Enter your custom prompt for text to diagram conversion...",
+    "diagramToCodePromptPlaceholder": "Enter your custom prompt for diagram to code conversion..."
   }
 }
