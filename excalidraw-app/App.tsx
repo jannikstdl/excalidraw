@@ -1012,7 +1012,7 @@ const ExcalidrawWrapper = () => {
               },
             },
             {
-              label: "GitHub(Original)",
+              label: "GitHub",
               icon: GithubIcon,
               category: DEFAULT_CATEGORIES.links,
               predicate: true,
@@ -1028,28 +1028,6 @@ const ExcalidrawWrapper = () => {
               perform: () => {
                 window.open(
                   "https://github.com/excalidraw/excalidraw",
-                  "_blank",
-                  "noopener noreferrer",
-                );
-              },
-            },
-            {
-              label: "GitHub(Current fork)",
-              icon: GithubIcon,
-              category: DEFAULT_CATEGORIES.links,
-              predicate: true,
-              keywords: [
-                "issues",
-                "bugs",
-                "requests",
-                "report",
-                "features",
-                "social",
-                "community",
-              ],
-              perform: () => {
-                window.open(
-                  "https://github.com/KwokKwok/excalidraw",
                   "_blank",
                   "noopener noreferrer",
                 );
