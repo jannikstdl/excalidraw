@@ -142,19 +142,19 @@ export const MagicSettings = (props: {
                 label={t("magicSettings.baseUrl")}
                 value={baseUrl}
                 onChange={(value) => setBaseUrl(value)}
-                placeholder="https://api.siliconflow.cn/v1"
+                placeholder="https://api.ai-demo.officelan.izb/v1"
               />
               <TextField
                 label={t("magicSettings.vlmModel")}
                 value={vlmModel}
                 onChange={(value) => setVlmModel(value)}
-                placeholder="Qwen/Qwen2-VL-72B-Instruct"
+                placeholder="FITS/Kiero-Vision"
               />
               <TextField
                 label={t("magicSettings.llmModel")} 
                 value={llmModel}
                 onChange={(value) => setLlmModel(value)}
-                placeholder="Qwen/Qwen2-72B-Instruct"
+                placeholder="FITS/Kiero"
               />
               
               <TextField
