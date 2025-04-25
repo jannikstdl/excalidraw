@@ -202,7 +202,7 @@
     "cannotRestoreFromImage": "Scena kunne ikkje gjenopprettast frå denne biletfila",
     "invalidSceneUrl": "Kunne ikkje hente noko scene frå den URL-en. Ho er anten øydelagd eller inneheld ikkje gyldig Excalidraw JSON-data.",
     "resetLibrary": "Dette vil fjerne alt innhald frå biblioteket. Er du sikker?",
-    "removeItemsFromsLibrary": "Slette {{count}} element frå biblioteket?",
+    "removeItemsFromsLibrary": "Slette {{count}} element frå biblioteket?",
     "invalidEncryptionKey": "Krypteringsnøkkelen må ha 22 teikn. Sanntidssamarbeid er deaktivert.",
     "collabOfflineWarning": ""
   },
@@ -416,7 +416,7 @@
     }
   },
   "encrypted": {
-    "tooltip": "Teikningane dine er ende-til-ende-krypterte slik at Excalidraw sine serverar aldri får sjå dei.",
+    "tooltip": "Teikningane dine er ende-til-ende-krypterte slik at FI-TS sine serverar aldri får sjå dei.",
     "link": "Blogginnlegg om ende-til-ende-kryptering i Excalidraw"
   },
   "stats": {

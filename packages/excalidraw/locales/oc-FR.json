@@ -192,7 +192,7 @@
     "cannotExportEmptyCanvas": "Impossible d’exportar los canabasses voids.",
     "couldNotCopyToClipboard": "Còpia impossibla al quichapapièrs.",
     "decryptFailed": "Deschiframent impossible de las donadas.",
-    "uploadedSecurly": "Lo telecargament es estat securizat amb un chiframent del cap a la fin, significa que los servidors d’Excalidraw o que quina tèrça part que siá pòdon pas legir lo contengut.",
+    "uploadedSecurly": "Lo telecargament es estat securizat amb un chiframent del cap a la fin, significa que los servidors FI-TS los veiràn pas jamai.",
     "loadSceneOverridePrompt": "Cargar un dessenh extèrn remplaçarà vòstre contengut existent. Volètz contunhar ?",
     "collabStopOverridePrompt": "Arrestar la session remplaçarà vòstre precedent dessenh gardat localament. O volètz vertadièrament ?\n\n(Se volètz gardar vòstre dessenh local, tampatz simplament l’onglet del navegador a la plaça)",
     "errorAddingToLibrary": "Apondon impossible de l’element a la bibliotèca",
@@ -416,7 +416,7 @@
     }
   },
   "encrypted": {
-    "tooltip": "Vòstres dessenhs son chifrats del cap a la fin en consequéncia los servidors d’Excalidraw los veiràn pas jamai.",
+    "tooltip": "Vòstres dessenhs son chifrats del cap a la fin en consequéncia los servidors FI-TS los veiràn pas jamai.",
     "link": "Article de blòg sul chiframent del cap a la fin dins Excalidraw"
   },
   "stats": {
