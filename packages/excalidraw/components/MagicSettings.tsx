@@ -102,6 +102,8 @@ export const MagicSettings = (props: {
             >
               {t("magicSettings.FITSAIMail")}
             </a>
+            </Paragraph>
+            <Paragraph>
               {t("magicSettings.useKey")}
           </Paragraph>
           <TextField

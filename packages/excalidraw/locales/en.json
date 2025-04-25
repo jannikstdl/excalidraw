@@ -592,7 +592,7 @@
     "useOpenAI": "uses OpenAI's AI service, this project replaces it with FI-TS AI Cloud.",
     "requestKey": "You can request a key by sending an email to",
     "FITSAIMail": "ZZG-FITS-AI-Services@f-i-ts.de",
-    "useKey": " and use this key in the API key field.",
+    "useKey": "and use this key in the API key field.",
     "apiKeyPlaceholder": "Paste your API key here",
     "apiKeyLabel": "FI-TS AI Cloud API Key",
     "apiBaseUrlLabel": "API Base URL",
