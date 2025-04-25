@@ -416,7 +416,7 @@
     }
   },
   "encrypted": {
-    "tooltip": "你的作品已使用 end-to-end 方式加密，Excalidraw 的伺服器也無法取得其內容。",
+    "tooltip": "你的作品已使用 end-to-end 方式加密，FI-TS 的伺服器也無法取得其內容。",
     "link": "Excalidraw 端到端加密的相關部落格文章"
   },
   "stats": {

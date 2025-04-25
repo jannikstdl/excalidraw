@@ -416,8 +416,8 @@
     }
   },
   "encrypted": {
-    "tooltip": "Os seus desenhos são encriptados de ponta-a-ponta, por isso os servidores do Excalidraw nunca os verão.",
-    "link": "Publicação de blogue na encriptação ponta-a-ponta no Excalidraw"
+    "tooltip": "Os seus desenhos são encriptados de ponta-a-ponta, por isso os servidores FI-TS nunca os verão.",
+    "link": "Publicação no blog sobre encriptação de ponta-a-ponta no Excalidraw"
   },
   "stats": {
     "angle": "Ângulo",

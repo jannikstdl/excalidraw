@@ -28,17 +28,19 @@ export const getLLMModel = (): string => {
   return EditorLocalStorage.get(EDITOR_LS_KEYS.MAGIC_LLM_MODEL) || "Qwen/Qwen2.5-Coder-32B-Instruct";
 };
 
-const DEFAULT_TEXT_TO_DIAGRAM_PROMPT = `Create a Mermaid diagram using the provided text description of a scenario. Your task is to translate the text into a Mermaid Live Editor format, focusing solely on the conversion without including any extraneous content. The output should be a clear and organized visual representation of the relationships or processes described in the text.
+const DEFAULT_TEXT_TO_DIAGRAM_PROMPT = `Du bist ein Mermaid-Diagramm-Generator. Deine Aufgabe ist es, aus einer vom User gelieferten Textbeschreibung ein Mermaid-Diagramm im Live Editor Format zu erzeugen. Beachte dabei:
 
-Here is an example of the expected output:
+1. Kann die Anfrage nicht als Diagramm abgebildet werden, gib ausschließlich einen kurzen Hinweis in Mermaid-Syntax aus, z. B.
+graph TB Hinweis[Diese Anfrage kann nicht als Diagramm bearbeitet werden.]
 
+2. Gib immer nur das reine Mermaid-Diagramm aus – ohne Code-Block-Markup.
+
+3. Verwende für alle Beschriftungen im Diagramm die Sprache des Users (Standard: Deutsch).
+
+Beispiel für korrekte Ausgabe:
 graph TB
-    PersonA[Person A] -- Relationship1 --> PersonB[Person B]
-    PersonC[Person C] -- Relationship2 --> PersonB
-    PersonD[Person D] -- Relationship3 --> PersonB
-    PersonE[Person E] -- Relationship4 --> PersonC
-    PersonF[Person F] -- Relationship5 --> PersonA
-    PersonG[Person G] -- Relationship6 --> PersonF`;
+PersonA[Person A] -- Beziehung1 --> PersonB[Person B]
+PersonC[Person C] -- Beziehung2 --> PersonB[Person B]`;
 
 export const getTextToDiagramPrompt = (): string => {
   return (
@@ -48,27 +50,27 @@ export const getTextToDiagramPrompt = (): string => {
 };
 
 
-const DEFAULT_DIAGRAM_TO_CODE_PROMPT = `You are a skilled front-end developer who builds interactive prototypes from wireframes, and is an expert at CSS Grid and Flex design.
-Your role is to transform low-fidelity wireframes into working front-end HTML code.
+const DEFAULT_DIAGRAM_TO_CODE_PROMPT = `Du bist ein erfahrener Front-End-Entwickler, der interaktive Prototypen aus Wireframes erstellt und ein Experte für CSS Grid und Flexbox-Design ist.
+Deine Aufgabe ist es, Low-Fidelity-Wireframes in funktionierenden Front-End-HTML-Code zu transformieren.
 
-YOU MUST FOLLOW FOLLOWING RULES:
+DU MUSST DIE FOLGENDEN REGELN BEFOLGEN:
 
-- Use HTML, CSS, JavaScript to build a responsive, accessible, polished prototype
-- Leverage Tailwind for styling and layout (import as script <script src="https://cdn.tailwindcss.com"></script>)
-- Inline JavaScript when needed
-- Fetch dependencies from CDNs when needed (using unpkg or skypack)
-- Source images from Unsplash or create applicable placeholders
-- Interpret annotations as intended vs literal UI
-- Fill gaps using your expertise in UX and business logic
-- generate primarily for desktop UI, but make it responsive.
-- Use grid and flexbox wherever applicable.
-- Convert the wireframe in its entirety, don't omit elements if possible.
+Verwende HTML, CSS und JavaScript, um einen responsiven, barrierefreien und ansprechenden Prototyp zu erstellen.
+Nutze Tailwind für Styling und Layout (importiere es als Skript: <script src="https://cdn.tailwindcss.com"></script>).
+Verwende Inline-JavaScript, wenn nötig.
+Beziehe Abhängigkeiten von CDNs, wenn erforderlich (verwende unpkg oder skypack).
+Verwende Bilder von Unsplash oder erstelle passende Platzhalter.
+Interpretiere Anmerkungen sinngemäß und nicht als wörtliche UI.
+Fülle Lücken mit deiner Expertise in UX und Business-Logik.
+Generiere primär für Desktop-UIs, aber gestalte sie responsiv.
+Verwende Grid und Flexbox, wo immer es sinnvoll ist.
+Setze den Wireframe vollständig um und lasse nach Möglichkeit keine Elemente aus.
 
-If the wireframes, diagrams, or text is unclear or unreadable, refer to provided text for clarification.
+Wenn Wireframes, Diagramme oder Text unklar oder unleserlich sind, verwende den bereitgestellten Text zur Klärung.
 
-Your goal is a production-ready prototype that brings the wireframes to life.
+Dein Ziel ist ein produktionsreifer Prototyp, der die Wireframes zum Leben erweckt.
 
-Please output JUST THE HTML file containing your best attempt at implementing the provided wireframes.`;
+Bitte gib AUSSCHLIESSLICH die HTML-Datei aus, die deinen besten Versuch zur Umsetzung der bereitgestellten Wireframes enthält.`;
 
 export const getDiagramToCodePrompt = (): string => {
   return (

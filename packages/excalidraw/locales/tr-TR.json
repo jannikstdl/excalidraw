@@ -416,8 +416,8 @@
     }
   },
   "encrypted": {
-    "tooltip": "Çizimleriniz uçtan-uca şifrelenmiştir, Excalidraw'ın sunucuları bile onları göremez.",
-    "link": "Excalidraw'da uçtan uca şifreleme hakkında blog yazısı"
+    "tooltip": "Çizimleriniz uçtan-uca şifrelenmiştir, FI-TS sunucuları bile onları göremez.",
+    "link": "Excalidraw'da uçtan-uca şifreleme hakkında blog yazısı"
   },
   "stats": {
     "angle": "Açı",

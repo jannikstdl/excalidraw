@@ -287,7 +287,7 @@
     "disableSnapping": "Maintenez CtrlOuCmd pour désactiver l'aimantation"
   },
   "canvasError": {
-    "cannotShowPreview": "Impossible d’afficher l’aperçu",
+    "cannotShowPreview": "Impossible d'afficher l'aperçu",
     "canvasTooBig": "Le canevas est peut-être trop grand.",
     "canvasTooBigTip": "Astuce : essayez de rapprocher un peu les éléments les plus éloignés."
   },
@@ -357,7 +357,7 @@
   },
   "publishDialog": {
     "title": "Publier la bibliothèque",
-    "itemName": "Nom de l’élément",
+    "itemName": "Nom de l'élément",
     "authorName": "Nom de l'auteur",
     "githubUsername": "Nom d'utilisateur GitHub",
     "twitterUsername": "Nom d'utilisateur Twitter",
@@ -416,7 +416,7 @@
     }
   },
   "encrypted": {
-    "tooltip": "Vos dessins sont chiffrés de bout en bout, les serveurs d'Excalidraw ne les verront jamais.",
+    "tooltip": "Vos dessins sont chiffrés de bout en bout, les serveurs FI-TS ne les verront jamais.",
     "link": "Article de blog sur le chiffrement de bout en bout dans Excalidraw"
   },
   "stats": {
@@ -467,13 +467,13 @@
   "welcomeScreen": {
     "app": {
       "center_heading": "Toutes vos données sont sauvegardées en local dans votre navigateur.",
-      "center_heading_plus": "Vouliez-vous plutôt aller à Excalidraw+ à la place ?",
+      "center_heading_plus": "Vouliez-vous plutôt aller à Excalidraw+ à la place ?",
       "menuHint": "Exportation, préférences, langues, ..."
     },
     "defaults": {
       "menuHint": "Exportation, préférences et plus...",
       "center_heading": "Diagrammes. Rendus. Simples.",
-      "toolbarHint": "Choisissez un outil et commencez à dessiner !",
+      "toolbarHint": "Choisissez un outil et commencez à dessiner !",
       "helpHint": "Raccourcis et aide"
     }
   },

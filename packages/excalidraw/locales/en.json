@@ -448,7 +448,7 @@
     }
   },
   "encrypted": {
-    "tooltip": "Your drawings are end-to-end encrypted so Excalidraw's servers will never see them.",
+    "tooltip": "Your drawings are end-to-end encrypted so FI-TS's servers will never see them.",
     "link": "Blog post on end-to-end encryption in Excalidraw"
   },
   "stats": {
@@ -589,13 +589,12 @@
     "title": "AI Settings",
     "experimentalFeature": "Experimental Feature",
     "originalProject": "The original project",
-    "useOpenAI": "uses OpenAI's AI service, this project replaces it with SiliconCloud.",
-    "createAccount": "You can create a",
-    "siliconCloudAccount": "SiliconCloud account",
-    "freeCredit": "(get ¥14 free long-term credit for first registration), and",
-    "generateKey": "generate your own API key",
+    "useOpenAI": "uses OpenAI's AI service, this project replaces it with FI-TS AI Cloud.",
+    "requestKey": "You can request a key by sending an email to",
+    "FITSAIMail": "ZZG-FITS-AI-Services@f-i-ts.de",
+    "useKey": "and use this key in the API key field.",
     "apiKeyPlaceholder": "Paste your API key here",
-    "apiKeyLabel": "SiliconCloud API Key",
+    "apiKeyLabel": "FI-TS AI Cloud API Key",
     "apiBaseUrlLabel": "API Base URL",
     "apiBaseUrlPlaceholder": "Enter API base URL (optional)",
     "tokenNotSaved": "By default, your API token is not saved, so you'll need to re-enter it after reloading.",

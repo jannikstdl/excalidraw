@@ -416,8 +416,8 @@
     }
   },
   "encrypted": {
-    "tooltip": "Vaše kresby používajú end-to-end šifrovanie, takže ich Excalidraw server nedokáže prečítať.",
-    "link": "Blog o end-to-end šifrovaní v Excalidraw"
+    "tooltip": "Vaše kresby používajú end-to-end šifrovanie, takže ich FI-TS server nedokáže prečítať.",
+    "link": "Blogový príspevok o end-to-end šifrovaní v Excalidraw"
   },
   "stats": {
     "angle": "Uhol",

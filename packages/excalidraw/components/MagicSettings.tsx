@@ -94,23 +94,15 @@ export const MagicSettings = (props: {
             {t("magicSettings.useOpenAI")}
           </Paragraph>
           <Paragraph>
-            {t("magicSettings.createAccount")}{" "}
+            {t("magicSettings.requestKey")}{" "}
             <a
-              href="https://cloud.siliconflow.cn/i/Vry8ZUHq"
+              href="mailto:ZZG-FITS-AI-Services@f-i-ts.de"
               rel="noopener noreferrer"
               target="_blank"
             >
-              {t("magicSettings.siliconCloudAccount")}
+              {t("magicSettings.FITSAIMail")}
             </a>
-            {t("magicSettings.freeCredit")}{" "}
-            <a
-              href="https://cloud.siliconflow.cn/account/ak"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {t("magicSettings.generateKey")}
-            </a>
-            。
+              {t("magicSettings.useKey")}
           </Paragraph>
           <TextField
             isRedacted

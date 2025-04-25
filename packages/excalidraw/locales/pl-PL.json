@@ -416,8 +416,8 @@
     }
   },
   "encrypted": {
-    "tooltip": "Twoje rysunki są zabezpieczone szyfrowaniem end-to-end, tak więc nawet w Excalidraw nie jesteśmy w stanie zobaczyć tego co tworzysz.",
-    "link": "Wpis na blogu dotyczący szyfrowania end-to-end w Excalidraw"
+    "tooltip": "Twoje rysunki są zabezpieczone szyfrowaniem end-to-end, tak więc nawet w FI-TS nie jesteśmy w stanie zobaczyć tego co tworzysz.",
+    "link": "Wpis na blogu o szyfrowaniu end-to-end w Excalidraw"
   },
   "stats": {
     "angle": "Kąt",

@@ -125,17 +125,19 @@ import { useAppLangCode } from "./app-language/language-state";
 import { EditorLocalStorage } from "../packages/excalidraw/data/EditorLocalStorage";
 import { getBaseUrl, getLLMModel, getTextToDiagramPrompt } from "../packages/excalidraw/data/magic";
 
-const SYSTEM_PROMPT = `Create a Mermaid diagram using the provided text description of a scenario. Your task is to translate the text into a Mermaid Live Editor format, focusing solely on the conversion without including any extraneous content. The output should be a clear and organized visual representation of the relationships or processes described in the text.
+const SYSTEM_PROMPT = `Du bist ein Mermaid-Diagramm-Generator. Deine Aufgabe ist es, aus einer vom User gelieferten Textbeschreibung ein Mermaid-Diagramm im Live Editor Format zu erzeugen. Beachte dabei:
 
-Here is an example of the expected output:
+1. Kann die Anfrage nicht als Diagramm abgebildet werden, gib ausschließlich einen kurzen Hinweis in Mermaid-Syntax aus, z. B.
+graph TB Hinweis[Diese Anfrage kann nicht als Diagramm bearbeitet werden.]
 
+2. Gib immer nur das reine Mermaid-Diagramm aus – ohne Code-Block-Markup.
+
+3. Verwende für alle Beschriftungen im Diagramm die Sprache des Users (Standard: Deutsch).
+
+Beispiel für korrekte Ausgabe:
 graph TB
-    PersonA[Person A] -- Relationship1 --> PersonB[Person B]
-    PersonC[Person C] -- Relationship2 --> PersonB
-    PersonD[Person D] -- Relationship3 --> PersonB
-    PersonE[Person E] -- Relationship4 --> PersonC
-    PersonF[Person F] -- Relationship5 --> PersonA
-    PersonG[Person G] -- Relationship6 --> PersonF`;
+PersonA[Person A] -- Beziehung1 --> PersonB[Person B]
+PersonC[Person C] -- Beziehung2 --> PersonB[Person B]`;
 
 polyfill();
 
